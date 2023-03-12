@@ -43,7 +43,7 @@ namespace Renting.Server.Controllers.Rents.Services
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (rent == null)
-                throw new ArgumentException("не найден"); // todo сделать кастомную ошибку ObjectNotFoundException
+                throw new ArgumentException("не найден");
 
             return _mapper.Map<RentDto>(rent);
         }
