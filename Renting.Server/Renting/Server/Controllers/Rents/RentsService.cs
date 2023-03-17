@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Renting.Server.Dtos;
 
-namespace Renting.Server.Controllers.Rents.Services
+namespace Renting.Server.Controllers.Rents
 {
     public interface IRentsService
     {
@@ -56,7 +56,7 @@ namespace Renting.Server.Controllers.Rents.Services
                 .Include(x => x.Customer).ThenInclude(x => x.Discounts)
                 .Include(x => x.User)
                 .ToListAsync();
-            
+
             return _mapper.Map<List<RentDto>>(rents);
         }
     }

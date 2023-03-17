@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Renting.Server.Controllers.Rents.Services;
+using Renting.Server.Controllers.Rents;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 

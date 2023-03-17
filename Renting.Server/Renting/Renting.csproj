@@ -15,10 +15,5 @@
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Server\Controllers\Items\Models\" />
-	  <Folder Include="Server\Controllers\Rents\Models\" />
-	</ItemGroup>
 	
 </Project>

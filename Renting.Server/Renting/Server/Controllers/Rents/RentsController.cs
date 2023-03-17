@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Renting.Server.Controllers.Rents.Services;
 using Renting.Server.Dtos;
 
 namespace Renting.Server.Controllers.Rents
