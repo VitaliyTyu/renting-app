@@ -9,6 +9,5 @@ namespace Renting.Server.Dtos
         public string? Nickname { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
-        //public List<RentDto> Rents { get; set; } = new List<RentDto>();
     }
 }
