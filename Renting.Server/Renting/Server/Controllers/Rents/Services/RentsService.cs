@@ -10,7 +10,6 @@ using Lab9.App.DAL;
 
 using Microsoft.EntityFrameworkCore;
 
-using Renting.DAL.Entities;
 using Renting.Server.Dtos;
 
 namespace Renting.Server.Controllers.Rents.Services
@@ -35,11 +34,11 @@ namespace Renting.Server.Controllers.Rents.Services
         public async Task<RentDto> GetRent(int id, CancellationToken ct)
         {
             var rent = await _context.Rents
-                .Include(x => x.Penalties).ThenInclude(x => x.PenaltyTypes)
-                .Include(x => x.Items).ThenInclude(x => x.CountryOfOrigin)
-                .Include(x => x.Items).ThenInclude(x => x.Warehouse)
-                .Include(x => x.Items).ThenInclude(x => x.Category)
+                .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
+                .Include(x => x.Item).ThenInclude(x => x.Warehouse)
+                .Include(x => x.Item).ThenInclude(x => x.Category)
                 .Include(x => x.Customer).ThenInclude(x => x.Discounts)
+                .Include(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (rent == null)
@@ -51,11 +50,11 @@ namespace Renting.Server.Controllers.Rents.Services
         public async Task<List<RentDto>> GetRents(CancellationToken ct)
         {
             var rents = await _context.Rents
-                .Include(x => x.Penalties).ThenInclude(x => x.PenaltyTypes)
-                .Include(x => x.Items).ThenInclude(x => x.CountryOfOrigin)
-                .Include(x => x.Items).ThenInclude(x => x.Warehouse)
-                .Include(x => x.Items).ThenInclude(x => x.Category)
+                .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
+                .Include(x => x.Item).ThenInclude(x => x.Warehouse)
+                .Include(x => x.Item).ThenInclude(x => x.Category)
                 .Include(x => x.Customer).ThenInclude(x => x.Discounts)
+                .Include(x => x.User)
                 .ToListAsync();
             
             return _mapper.Map<List<RentDto>>(rents);

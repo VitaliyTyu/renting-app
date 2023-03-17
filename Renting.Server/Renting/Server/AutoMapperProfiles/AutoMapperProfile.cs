@@ -19,7 +19,6 @@ namespace Renting.Server.AutoMapperProfiles
             CreateMap<Rent, RentDto>(MemberList.Destination).ReverseMap();
             CreateMap<User, UserDto>(MemberList.Destination).ReverseMap();
             CreateMap<Warehouse, WarehouseDto>(MemberList.Destination).ReverseMap();
-
         }
     }
 }

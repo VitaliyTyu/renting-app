@@ -9,16 +9,18 @@ namespace Renting.DAL.Entities
         public DateTime StartDate { get; set; }
         public DateTime ExpectedEndDate { get; set; }
         public DateTime? ActualEndDate { get; set; }
+        public decimal Price { get; set; }
+        public string? Note { get; set; }
 
-        [JsonIgnore]
-        public int UserId { get; set; }
-        [JsonIgnore]
-        public User User { get; set; }
+        public int? UserId { get; set; }
+        public User? User { get; set; }
 
-        public int? CustomerId { get; set; } // todo убрать из базы
+        public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
 
-        public List<Item> Items { get; set; } = new List<Item>();
+        public int? ItemId { get; set; }
+        public Item? Item { get; set; }
+
         public List<Penalty> Penalties { get; set; } = new List<Penalty>();
     }
 }

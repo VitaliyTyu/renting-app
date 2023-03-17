@@ -81,25 +81,6 @@ namespace Lab9.App.DAL
 
 
 
-            var penaltyType1 = new PenaltyType() { Name = "Полная поломка снаряжения", Description = "Полная поломка снаряжения", HarmLevel = HarmLevel.High };
-            var penaltyType2 = new PenaltyType() { Name = "Частичнвая поломка снаряжения", Description = "Частичнвая поломка снаряжени", HarmLevel = HarmLevel.Medium };
-            var penaltyType3 = new PenaltyType() { Name = "Наличие незначительных повреждений", Description = "Наличие незначительных повреждений", HarmLevel = HarmLevel.Low };
-
-
-
-            var penalty1 = new Penalty()
-            {
-                Value = 1000,
-                PenaltyTypes = new List<PenaltyType>() { penaltyType1, penaltyType2 }
-            };
-            var penalty2 = new Penalty()
-            {
-                Value = 100,
-                PenaltyTypes = new List<PenaltyType>() { penaltyType3 }
-            };
-
-
-
             var discount1 = new Discount() { Value = 15, ActualFrom = new DateTime(2023, 03, 12), ActualTo = new DateTime(2023, 12, 30)};
             var discount2 = new Discount() { Value = 30, ActualFrom = new DateTime(2023, 03, 12), ActualTo = new DateTime(2023, 12, 30) };
             var discount3 = new Discount() { Value = 50, ActualFrom = new DateTime(2023, 03, 12), ActualTo = new DateTime(2023, 12, 30) };
@@ -108,7 +89,8 @@ namespace Lab9.App.DAL
 
             var customer1 = new Customer() 
             { 
-                Name = "Иван", 
+                Name = "Иван",
+                Surname = "Петров",
                 Age = 20, 
                 Height = 180, 
                 ShoeSizeRu = 45,
@@ -117,7 +99,8 @@ namespace Lab9.App.DAL
 
             var customer2 = new Customer() 
             { 
-                Name = "Мария", 
+                Name = "Мария",
+                Surname = "Петрова",
                 Age = 25, 
                 Height = 170, 
                 ShoeSizeRu = 40,
@@ -126,10 +109,20 @@ namespace Lab9.App.DAL
 
             var customer3 = new Customer() 
             { 
-                Name = "Петр", 
+                Name = "Петр",
+                Surname = "Первый!",
                 Age = 30, 
                 Height = 175, 
                 ShoeSizeRu = 42 
+            };
+
+            var user = new User()
+            {
+                EmailAddress = "test@yandex.ru",
+                Password = "root",
+                Nickname = "user",
+                Name = "Иван",
+                Surname= "Иванов",
             };
 
 
@@ -138,36 +131,73 @@ namespace Lab9.App.DAL
                 StartDate = new DateTime(2023, 03, 12), 
                 ExpectedEndDate = new DateTime(2023, 03, 20), 
                 Customer = customer1, 
-                Items = new List<Item>() { item1, item2},
-                Penalties = new List<Penalty>() { penalty1 },
+                Item = item1,
+                User = user,
             };
 
             var rent2 = new Rent()
             {
-                StartDate = new DateTime(2023, 03, 20),
-                ExpectedEndDate = new DateTime(2023, 03, 30),
-                Customer = customer2,
-                Items = new List<Item>() { item3, item4 },
-                Penalties = new List<Penalty>() { penalty2 },
+                StartDate = new DateTime(2023, 03, 12),
+                ExpectedEndDate = new DateTime(2023, 03, 20),
+                Customer = customer1,
+                Item = item2,
+                User = user,
             };
 
             var rent3 = new Rent()
             {
+                StartDate = new DateTime(2023, 03, 20),
+                ExpectedEndDate = new DateTime(2023, 03, 30),
+                User = user,
+                Customer = customer2,
+                Item = item3,
+            };
+
+            var rent4 = new Rent()
+            {
+                StartDate = new DateTime(2023, 03, 20),
+                ExpectedEndDate = new DateTime(2023, 03, 30),
+                User = user,
+                Customer = customer2,
+                Item = item4,
+            };
+
+            var rent5 = new Rent()
+            {
                 StartDate = new DateTime(2023, 03, 13),
                 ExpectedEndDate = new DateTime(2023, 03, 21),
+                User = user,
                 Customer = customer3,
-                Items = new List<Item>() { item1, item4 },
+                Item = item4
             };
 
-            var user = new User() 
-            { 
-                EmailAddress = "test@yandex.ru", 
-                Password = "root",
-                Name = "user",
-                Rents = new List<Rent>() { rent1, rent2, rent3}
+            await db.Rents.AddRangeAsync(rent1, rent2, rent3, rent4, rent5);
+
+
+            var penaltyType1 = new PenaltyType()
+            {
+                Name = "Полная поломка снаряжения",
+                Description = "Полная поломка снаряжения",
+                HarmLevel = HarmLevel.High
+            };
+            var penaltyType2 = new PenaltyType()
+            {
+                Name = "Частичнвая поломка снаряжения",
+                Description = "Частичнвая поломка снаряжени",
+                HarmLevel = HarmLevel.Medium
+            };
+            var penaltyType3 = new PenaltyType()
+            {
+                Name = "Наличие незначительных повреждений",
+                Description = "Наличие незначительных повреждений",
+                HarmLevel = HarmLevel.Low
             };
 
-            await db.Users.AddAsync(user);
+            var penalty1 = new Penalty() { Value = 10000, Rent = rent1, PenaltyType = penaltyType1 };
+            var penalty2 = new Penalty() { Value = 100, Rent = rent2, PenaltyType = penaltyType2 };
+            var penalty3 = new Penalty() { Value = 10, Rent = rent3, PenaltyType = penaltyType3 };
+
+            await db.Penalties.AddRangeAsync(penalty1, penalty2, penalty3);
             await db.SaveChangesAsync();
         }
     }

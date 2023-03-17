@@ -24,7 +24,7 @@ namespace Lab9.App.DAL
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new RentConfiguration());
+            //builder.ApplyConfiguration(new RentConfiguration());
 
             base.OnModelCreating(builder);
         }

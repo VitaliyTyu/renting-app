@@ -12,10 +12,7 @@ namespace Renting.DAL.Entities
         public double? Length { get; set; }
         public double? Width { get; set; }
 
-        [JsonIgnore]
-        public int? RentId { get; set; }
-        [JsonIgnore]
-        public Rent? Rent { get; set; }
+        public List<Rent> Rents { get; set; } = new List<Rent>();
 
         public int? CountryOfOriginId { get; set; }
         public CountryOfOrigin? CountryOfOrigin { get; set; }

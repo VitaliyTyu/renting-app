@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
+using Renting.DAL.Entities;
+
 namespace Renting.Server.Dtos
 {
     public class PenaltyDto
@@ -8,6 +10,10 @@ namespace Renting.Server.Dtos
         public string? Name { get; set; }
         public decimal Value { get; set; }
 
-        public List<PenaltyTypeDto> PenaltyTypes { get; set; } = new List<PenaltyTypeDto>();
+        public int? RentId { get; set; }
+        public RentDto? Rent { get; set; }
+
+        public int? PenaltyTypeId { get; set; }
+        public PenaltyTypeDto? PenaltyType { get; set; }
     }
 }

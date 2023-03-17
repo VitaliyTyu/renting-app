@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Renting.DAL.Entities
 {
@@ -14,10 +15,6 @@ namespace Renting.DAL.Entities
         public string Name { get; set; }
         public string? Description { get; set; }
         public HarmLevel HarmLevel { get; set; }
-
-        [JsonIgnore]
-        public int? PenaltyId { get; set; }
-        [JsonIgnore]
-        public Penalty? Penalty { get; set; }
+        public List<Penalty> Penalties { get; set; } = new List<Penalty>();
     }
 }

@@ -8,8 +8,10 @@ namespace Renting.Server.Dtos
         public DateTime StartDate { get; set; }
         public DateTime ExpectedEndDate { get; set; }
         public DateTime? ActualEndDate { get; set; }
+        public decimal Price { get; set; }
+        public string? Note { get; set; }
         public CustomerDto Customer { get; set; }
-        public List<ItemDto> Items { get; set; } = new List<ItemDto>();
-        public List<PenaltyDto> Penalties { get; set; } = new List<PenaltyDto>();
+        public ItemDto Item { get; set; }
+        public UserDto User { get; set; }
     }
 }
