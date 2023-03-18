@@ -1,0 +1,85 @@
+﻿@page
+@model Renting.Pages.CreateModel
+
+<br />
+<h2 class="text-info">Создать аренду</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Rent.StartDate">Дата начала</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Rent.StartDate" class="form-control" />
+            </div>
+            <span asp-validation-for="Rent.StartDate" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Rent.ExpectedEndDate">Ожидаемая дата конца</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Rent.ExpectedEndDate" class="form-control" />
+            </div>
+            <span asp-validation-for="Rent.ExpectedEndDate" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Rent.ActualEndDate">Фактическая дата конца</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Rent.ActualEndDate" class="form-control" />
+            </div>
+            <span asp-validation-for="Rent.ActualEndDate" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Rent.Customer" class="control-label">Покупатель</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Rent.CustomerId" class="form-control"
+                        asp-items="@Model.CustomerNameSL">
+                    <option value="">Выбор Покупателя</option>
+                </select>
+                <span asp-validation-for="Rent.CustomerId" class="text-danger" />
+            </div>
+            <br />
+        </div>
+
+        <div class="form-group row" style="margin-top: 15px">
+            <div class="col-3">
+                <label asp-for="Rent.Item" class="control-label">Предмет</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Rent.ItemId" class="form-control"
+                        asp-items="@Model.ItemNameSL">
+                    <option value="">Выбор предмета</option>
+                </select>
+                <span asp-validation-for="Rent.ItemId" class="text-danger" />
+            </div>
+            <br />
+        </div>
+
+        <div class="form-group row" style="margin-top: 10px">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Создать" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Назад</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{ 
+    <partial name="_ValidationScriptsPartial" />
+}

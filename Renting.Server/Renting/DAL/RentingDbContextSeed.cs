@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Renting.DAL.Entities;
 
-namespace Lab9.App.DAL
+namespace Renting.DAL
 {
     public class RentingDbContextSeed
     {

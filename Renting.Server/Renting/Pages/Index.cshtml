@@ -1,0 +1,99 @@
+﻿@page
+@model Renting.Pages.IndexModel
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Аренды</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Create" class="btn btn-info form-control text-white">Создать аренду</a>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Rents.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label>Имя покупателя</label>
+                        </th>
+                        <th>
+                            <label>Фамилия покупателя</label>
+                        </th>
+                        <th>
+                            <label>Имя продавца</label>
+                        </th>
+                        <th>
+                            <label>Фамилия продавца</label>
+                        </th>
+                        <th>
+                            <label>Арендуемый предмет</label>
+                        </th>
+                        <th>
+                            <label>Цена предмета</label>
+                        </th>
+                        <th>
+                            <label>Дата начала</label>
+                        </th>
+                        <th>
+                            <label>Ожидаемая дата конца</label>
+                        </th>
+                       <th>
+                            <label>Фактическая дата конца</label>
+                        </th>
+
+                        <th>
+                        </th>
+                    </tr>
+                    @foreach (var rent in Model.Rents)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => rent.Customer.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.Customer.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.User.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.User.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.Item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.Item.RentalPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.ExpectedEndDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => rent.ActualEndDate)
+                            </td>
+
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@rent.Id" class="btn btn-danger btn-sm">Удалить</button>
+                                <a asp-page="Edit" asp-route-id="@rent.Id" class="btn btn-success btn-sm text-white">Редактировать</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>Нет аренд</p>
+            }
+        </form>
+    </div>
+</div>
+
+
+
+

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Renting.DAL.Entities;
 
-namespace Lab9.App.DAL
+namespace Renting.DAL
 {
     public class RentingDbContext : DbContext
     {

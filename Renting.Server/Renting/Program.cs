@@ -2,13 +2,13 @@ using System;
 using System.IO;
 using System.Reflection;
 
-using Lab9.App.DAL;
+using Renting.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Renting.Server.Controllers.Rents;
+using Renting.Pages;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -21,26 +21,20 @@ builder.Services.AddDbContext<RentingDbContext>(options =>
 
 
 builder.Services
-    .AddControllers();
+    .AddRazorPages();
 
 builder.Services
     .AddTransient<IRentsService, RentsService>();
 
-builder.Services
-    .AddSwaggerGen();
 
-builder.Services
-    .AddAutoMapper(typeof(Program).Assembly);
 
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
-
+app.UseStaticFiles();
 app.UseRouting();
+app.MapRazorPages();
 app.UseHttpsRedirection();
-app.MapControllers();
 
 
 using (var scope = app.Services.CreateScope())
