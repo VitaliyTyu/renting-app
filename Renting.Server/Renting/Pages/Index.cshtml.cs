@@ -32,22 +32,6 @@ namespace Renting.Pages
                 return RedirectToPage("Index");
             else
                 return NotFound();
-
-            //if (id == null)
-            //    return NotFound();
-
-            //var rent = await _db.Rents
-            //    .Include(x => x.Penalties)
-            //    .FirstOrDefaultAsync(x => x.Id == id);
-
-            //if (rent == null)
-            //    return NotFound();
-
-            //_db.Rents.Remove(rent);
-
-            //await _db.SaveChangesAsync();
-
-            //return RedirectToPage("Index");
         }
     }
 }

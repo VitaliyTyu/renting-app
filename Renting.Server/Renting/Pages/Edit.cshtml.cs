@@ -4,36 +4,37 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Renting.Pages
 {
     public class EditModel : RentsPageModel
     {
         private RentingDbContext _db;
+        private readonly IRentsService _rentsService;
 
-        public EditModel(RentingDbContext db)
+        public EditModel(RentingDbContext db, IRentsService rentsService)
         {
             _db = db;
+            _rentsService = rentsService;
         }
 
         [BindProperty]
         public Rent Rent { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, CancellationToken ct)
         {
             if (id == null)
                 return NotFound();
 
-            Rent = await _db.Rents
-                .Include(c => c.Item)
-                .Include(c => c.Customer)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Rent = await _rentsService.GetRent(id.Value, ct);
 
             if (Rent == null)
                 return NotFound();
 
             ItemDropDownList(_db, Rent.ItemId);
             CustomerDropDownList(_db, Rent.CustomerId);
+            SellerDropDownList(_db, Rent.SellerId);
 
             return Page();
         }
@@ -52,7 +53,7 @@ namespace Renting.Pages
                 rent.ActualEndDate = Rent.ActualEndDate;
                 rent.CustomerId = Rent.CustomerId;
                 rent.ItemId = Rent.ItemId;
-
+                rent.AccountId = Rent.AccountId;
 
                 await _db.SaveChangesAsync();
 
@@ -61,6 +62,7 @@ namespace Renting.Pages
 
             ItemDropDownList(_db);
             CustomerDropDownList(_db);
+            SellerDropDownList(_db);
 
             return Page();
         }

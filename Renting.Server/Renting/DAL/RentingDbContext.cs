@@ -14,7 +14,8 @@ namespace Renting.DAL
         public DbSet<Penalty> Penalties => Set<Penalty>();
         public DbSet<PenaltyType> PenaltyTypes => Set<PenaltyType>();
         public DbSet<Rent> Rents => Set<Rent>();
-        public DbSet<User> Users => Set<User>();
+        public DbSet<Seller> Sellers => Set<Seller>();
+        public DbSet<Account> Accounts => Set<Account>();
         public DbSet<Warehouse> Warehouses => Set<Warehouse>();
     }
 }

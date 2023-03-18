@@ -38,6 +38,7 @@ namespace Renting.DAL
             { 
                 Name = "Ëûæè", 
                 RentalPrice = 100.00m, 
+                MarketPrice = 1000.00m,
                 Length = 150, 
                 Width = 50,
                 BreakdownFee = 1000,
@@ -50,6 +51,7 @@ namespace Renting.DAL
             { 
                 Name = "Ñàíêè", 
                 RentalPrice = 75.00m, 
+                MarketPrice = 750,
                 Length = 100,
                 BreakdownFee = 100,
                 CountryOfOrigin = ñountryOfOrigin2,
@@ -61,6 +63,7 @@ namespace Renting.DAL
             { 
                 Name = "Êàðàáèí",
                 RentalPrice = 55.00m,
+                MarketPrice = 550,
                 Length = 10,
                 BreakdownFee = 10,
                 CountryOfOrigin = ñountryOfOrigin3,
@@ -72,6 +75,7 @@ namespace Renting.DAL
             { 
                 Name = "Òðîñ",
                 RentalPrice = 65.00m,
+                MarketPrice = 650,
                 Length = 1000,
                 BreakdownFee = 15,
                 CountryOfOrigin = ñountryOfOrigin3,
@@ -110,63 +114,77 @@ namespace Renting.DAL
             var customer3 = new Customer() 
             { 
                 Name = "Ïåòð",
-                Surname = "Ïåðâûé!",
+                Surname = "Èâàíîâ",
                 Age = 30, 
                 Height = 175, 
                 ShoeSizeRu = 42 
             };
 
-            var user = new User()
+            var account = new Account()
             {
-                EmailAddress = "test@yandex.ru",
-                Password = "root",
-                Nickname = "user",
-                Name = "Èâàí",
-                Surname= "Èâàíîâ",
+                EmailAddress = "account1@yandex.ru",
+                Password = "account1",
+                Inn = "1234567890"
             };
 
+            var seller1 = new Seller()
+            {
+                Name = "Äæîí",
+                Surname = "Äîó"
+            };
+
+            var seller2 = new Seller()
+            {
+                Name = "Äæåéí",
+                Surname = "Õîó"
+            };
 
             var rent1 = new Rent() 
-            { 
+            {
+                Account = account,
                 StartDate = new DateTime(2023, 03, 12), 
                 ExpectedEndDate = new DateTime(2023, 03, 20), 
                 Customer = customer1, 
                 Item = item1,
-                User = user,
+                Seller = seller1,
             };
 
             var rent2 = new Rent()
             {
+                Account = account,
                 StartDate = new DateTime(2023, 03, 12),
                 ExpectedEndDate = new DateTime(2023, 03, 20),
                 Customer = customer1,
                 Item = item2,
-                User = user,
+                Seller = seller1,
             };
 
             var rent3 = new Rent()
             {
+                Account = account,
                 StartDate = new DateTime(2023, 03, 20),
                 ExpectedEndDate = new DateTime(2023, 03, 30),
-                User = user,
+                Seller = seller2,
                 Customer = customer2,
                 Item = item3,
             };
 
             var rent4 = new Rent()
             {
+                Account = account,
                 StartDate = new DateTime(2023, 03, 20),
                 ExpectedEndDate = new DateTime(2023, 03, 30),
-                User = user,
+                Seller = seller2,
                 Customer = customer2,
                 Item = item4,
             };
 
             var rent5 = new Rent()
             {
+                Account = account,
                 StartDate = new DateTime(2023, 03, 13),
                 ExpectedEndDate = new DateTime(2023, 03, 21),
-                User = user,
+                Seller = seller2,
                 Customer = customer3,
                 Item = item4
             };

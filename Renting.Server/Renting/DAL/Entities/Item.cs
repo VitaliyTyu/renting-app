@@ -7,6 +7,7 @@ namespace Renting.DAL.Entities
     {
         public string Name { get; set; }
         public decimal RentalPrice { get; set; }
+        public decimal MarketPrice { get; set; }
         public decimal BreakdownFee { get; set; }
         public double? SizeRu { get; set; }
         public double? Length { get; set; }

@@ -16,5 +16,8 @@ namespace Renting.DAL.Entities
         public List<Rent> Rent { get; set; } = new List<Rent>();
 
         public List<Discount> Discounts { get; set; } = new List<Discount>();
+
+
+        public string FullName => string.Format("{0} {1}", Surname, Name);
     }
 }

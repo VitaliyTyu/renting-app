@@ -24,6 +24,7 @@ namespace Renting.Pages
         {
             ItemDropDownList(_db);
             CustomerDropDownList(_db);
+            SellerDropDownList(_db);
             return Page();
         }
 
@@ -38,6 +39,7 @@ namespace Renting.Pages
 
             ItemDropDownList(_db);
             CustomerDropDownList(_db);
+            SellerDropDownList(_db);
             return Page();
         }
     }

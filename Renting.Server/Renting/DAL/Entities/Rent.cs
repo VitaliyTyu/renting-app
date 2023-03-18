@@ -9,11 +9,12 @@ namespace Renting.DAL.Entities
         public DateTime StartDate { get; set; }
         public DateTime ExpectedEndDate { get; set; }
         public DateTime? ActualEndDate { get; set; }
-        public decimal Price { get; set; }
-        public string? Note { get; set; }
 
-        public int? UserId { get; set; }
-        public User? User { get; set; }
+        public int? AccountId { get; set; }
+        public Account? Account { get; set; }
+
+        public int? SellerId { get; set; }
+        public Seller? Seller { get; set; }
 
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }

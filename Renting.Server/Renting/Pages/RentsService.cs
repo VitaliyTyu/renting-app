@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Renting.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Renting.Pages
 {
@@ -36,11 +37,10 @@ namespace Renting.Pages
                 .Include(x => x.Item).ThenInclude(x => x.Warehouse)
                 .Include(x => x.Item).ThenInclude(x => x.Category)
                 .Include(x => x.Customer).ThenInclude(x => x.Discounts)
-                .Include(x => x.User)
+                .Include(x => x.Seller)
+                .Include(x => x.Account)
+                .Include(x => x.Penalties)
                 .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (rent == null)
-                throw new ArgumentException("не найден");
 
             return rent;
         }
@@ -52,7 +52,8 @@ namespace Renting.Pages
                 .Include(x => x.Item).ThenInclude(x => x.Warehouse)
                 .Include(x => x.Item).ThenInclude(x => x.Category)
                 .Include(x => x.Customer).ThenInclude(x => x.Discounts)
-                .Include(x => x.User)
+                .Include(x => x.Seller)
+                .Include(x => x.Account)
                 .Include(x => x.Penalties)
                 .ToListAsync();
 
@@ -69,7 +70,8 @@ namespace Renting.Pages
                 .Include(x => x.Item).ThenInclude(x => x.Warehouse)
                 .Include(x => x.Item).ThenInclude(x => x.Category)
                 .Include(x => x.Customer).ThenInclude(x => x.Discounts)
-                .Include(x => x.User)
+                .Include(x => x.Seller)
+                .Include(x => x.Account)
                 .Include(x => x.Penalties)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -81,6 +83,17 @@ namespace Renting.Pages
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        private async Task ValidateUser(int rentId, int accountId, CancellationToken ct)
+        {
+            var id = await _context.Rents
+                .Where(x => x.Id == rentId)
+                .Select(x => x.Account.Id)
+                .FirstOrDefaultAsync(ct);
+
+            if (id != accountId)
+                throw new ArgumentException("Forbidden");
         }
     }
 }

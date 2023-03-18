@@ -2,13 +2,12 @@
 
 namespace Renting.DAL.Entities
 {
-    public class User : DbItem
+    public class Seller : DbItem
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string? Nickname { get; set; }
-        public string EmailAddress { get; set; }
-        public string Password { get; set; }
         public List<Rent> Rents { get; set; } = new List<Rent>();
+
+        public string FullName => string.Format("{0} {1}", Surname, Name);
     }
 }

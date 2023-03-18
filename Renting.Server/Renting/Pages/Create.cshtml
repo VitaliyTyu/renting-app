@@ -57,6 +57,20 @@
 
         <div class="form-group row" style="margin-top: 15px">
             <div class="col-3">
+                <label asp-for="Rent.Seller" class="control-label">Продавец</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Rent.SellerId" class="form-control"
+                        asp-items="@Model.SellerNameSL">
+                    <option value="">Выбор продавца</option>
+                </select>
+                <span asp-validation-for="Rent.SellerId" class="text-danger" />
+            </div>
+            <br />
+        </div>
+
+        <div class="form-group row" style="margin-top: 15px">
+            <div class="col-3">
                 <label asp-for="Rent.Item" class="control-label">Предмет</label>
             </div>
             <div class="col-6">
