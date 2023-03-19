@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Renting.Pages
 {
@@ -13,13 +16,17 @@ namespace Renting.Pages
     public class CreateModel : RentsPageModel
     {
         private readonly RentingDbContext _db;
+        private readonly UserManager<DAL.Entities.Account> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         [BindProperty]
         public Rent Rent { get; set; }
 
-        public CreateModel(RentingDbContext db)
+        public CreateModel(RentingDbContext db, UserManager<DAL.Entities.Account> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult OnGet()
@@ -34,9 +41,18 @@ namespace Renting.Pages
         {
             if (ModelState.IsValid)
             {
-                await _db.Rents.AddAsync(Rent);
-                await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+                try
+                {
+                    var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+                    Rent.Account = user;
+                    await _db.Rents.AddAsync(Rent);
+                    await _db.SaveChangesAsync();
+                    return RedirectToPage("/Index");
+                }
+                catch (Exception)
+                {
+                    return RedirectToPage("/Account/Login");
+                }
             }
 
             ItemDropDownList(_db);

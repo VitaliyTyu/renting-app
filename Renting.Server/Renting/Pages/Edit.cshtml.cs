@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace Renting.Pages
 {
@@ -15,22 +18,35 @@ namespace Renting.Pages
     {
         private RentingDbContext _db;
         private readonly IRentsService _rentsService;
+        private readonly UserManager<DAL.Entities.Account> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EditModel(RentingDbContext db, IRentsService rentsService)
+        public EditModel(RentingDbContext db, IRentsService rentsService, UserManager<DAL.Entities.Account> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
             _rentsService = rentsService;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [BindProperty]
         public Rent Rent { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id, CancellationToken ct)
+        public async Task<IActionResult> OnGetAsync(int? id, CancellationToken ct)
         {
             if (id == null)
                 return NotFound();
 
-            Rent = await _rentsService.GetRent(id.Value, ct);
+            try
+            {
+                var rents = await _rentsService.GetRents(ct);
+                Rent = await _rentsService.GetRent(id.Value, ct);
+            }
+            catch (Exception)
+            {
+                return RedirectToPage("/Account/Login");
+            }
+
 
             if (Rent == null)
                 return NotFound();
@@ -46,7 +62,15 @@ namespace Renting.Pages
         {
             if (ModelState.IsValid)
             {
-                var rent = await _db.Rents.FirstOrDefaultAsync(x => x.Id == Rent.Id);
+                var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+                if (user == null)
+                    return RedirectToPage("/Account/Login");
+
+                var rent = await _db.Rents
+                    .Include(x => x.Account)
+                    .Where(x => x.AccountId == user.Id)
+                    .FirstOrDefaultAsync(x => x.Id == Rent.Id);
 
                 if (rent == null)
                     return NotFound();

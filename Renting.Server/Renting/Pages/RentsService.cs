@@ -18,8 +18,8 @@ namespace Renting.Pages
 {
     public interface IRentsService
     {
-        Task<bool> DeleteRent(Guid? id, CancellationToken ct);
-        Task<Rent> GetRent(Guid id, CancellationToken ct);
+        Task<bool> DeleteRent(int? id, CancellationToken ct);
+        Task<Rent> GetRent(int id, CancellationToken ct);
         Task<List<Rent>> GetRents(CancellationToken ct);
     }
 
@@ -36,8 +36,13 @@ namespace Renting.Pages
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<Rent> GetRent(Guid id, CancellationToken ct)
+        public async Task<Rent> GetRent(int id, CancellationToken ct)
         {
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+            if (user == null)
+                throw new ArgumentException("Доступ закрыт");
+
             var rent = await _context.Rents
                 .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
                 .Include(x => x.Item).ThenInclude(x => x.Warehouse)
@@ -46,6 +51,7 @@ namespace Renting.Pages
                 .Include(x => x.Seller)
                 .Include(x => x.Account)
                 .Include(x => x.Penalties)
+                .Where(x => x.AccountId == user.Id)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return rent;
@@ -53,7 +59,10 @@ namespace Renting.Pages
 
         public async Task<List<Rent>> GetRents(CancellationToken ct)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+            if (user == null)
+                throw new ArgumentException("Доступ закрыт");
 
             var rents = await _context.Rents
                 .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
@@ -63,16 +72,18 @@ namespace Renting.Pages
                 .Include(x => x.Seller)
                 .Include(x => x.Account)
                 .Include(x => x.Penalties)
-                .Where(x => x.AccountId == User.)
+                .Where(x => x.AccountId == user.Id)
                 .ToListAsync();
 
             return rents;
         }
 
-        public async Task<bool> DeleteRent(Guid? id, CancellationToken ct)
+        public async Task<bool> DeleteRent(int? id, CancellationToken ct)
         {
             if (id == null)
                 return false;
+
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
 
             var rent = await _context.Rents
                 .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
@@ -82,6 +93,7 @@ namespace Renting.Pages
                 .Include(x => x.Seller)
                 .Include(x => x.Account)
                 .Include(x => x.Penalties)
+                .Where(x => x.AccountId == user.Id)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (rent == null)
@@ -94,15 +106,15 @@ namespace Renting.Pages
             return true;
         }
 
-        private async Task ValidateUser(Guid rentId, Guid accountId, CancellationToken ct)
-        {
-            var id = await _context.Rents
-                .Where(x => x.Id == rentId)
-                .Select(x => x.Account.Id)
-                .FirstOrDefaultAsync(ct);
+        //private async Task ValidateUser(Guid rentId, Guid accountId, CancellationToken ct)
+        //{
+        //    var id = await _context.Rents
+        //        .Where(x => x.Id == rentId)
+        //        .Select(x => x.Account.Id)
+        //        .FirstOrDefaultAsync(ct);
 
-            if (id != accountId.ToString())
-                throw new ArgumentException("Forbidden");
-        }
+        //    if (id != accountId.ToString())
+        //        throw new ArgumentException("Forbidden");
+        //}
     }
 }

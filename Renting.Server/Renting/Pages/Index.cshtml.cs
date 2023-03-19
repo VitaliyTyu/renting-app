@@ -22,12 +22,21 @@ namespace Renting.Pages
 
         public List<Rent> Rents { get; set; }
 
-        public async Task OnGet(CancellationToken ct)
+        public async Task<IActionResult> OnGetAsync(CancellationToken ct)
         {
-            Rents = await _rentsService.GetRents(ct);
+            try
+            {
+                var rents = await _rentsService.GetRents(ct);
+                Rents = rents;
+                return Page();
+            }
+            catch (Exception)
+            {
+                return RedirectToPage("/Account/Login");
+            }
         }
 
-        public async Task<IActionResult> OnPostDelete(Guid? id, CancellationToken ct)
+        public async Task<IActionResult> OnPostDelete(int? id, CancellationToken ct)
         {
             var res = await _rentsService.DeleteRent(id, ct);
 

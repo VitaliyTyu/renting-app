@@ -4,6 +4,6 @@ namespace Renting.DAL.Entities
 {
     public class DbItem
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }
