@@ -57,7 +57,7 @@ namespace Renting.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(CancellationToken ct)
         {
             if (ModelState.IsValid)
             {
@@ -66,16 +66,7 @@ namespace Renting.Pages
                 if (user == null)
                     return RedirectToPage("/Account/Login");
 
-                var rent = await _db.Rents
-                .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
-                .Include(x => x.Item).ThenInclude(x => x.Warehouse)
-                .Include(x => x.Item).ThenInclude(x => x.Category)
-                .Include(x => x.Customer).ThenInclude(x => x.Discounts)
-                .Include(x => x.Seller)
-                .Include(x => x.Account)
-                .Include(x => x.Penalties)
-                .Where(x => x.AccountId == user.Id)
-                .FirstOrDefaultAsync(x => x.Id == Rent.Id);
+                var rent = await _rentsService.GetRent(Rent.Id, ct);
 
                 if (rent == null)
                     return NotFound();
