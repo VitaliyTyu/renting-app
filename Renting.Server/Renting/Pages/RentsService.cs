@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Renting.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace Renting.Pages
 {
@@ -24,10 +26,14 @@ namespace Renting.Pages
     public class RentsService : IRentsService
     {
         private readonly RentingDbContext _context;
+        private readonly UserManager<DAL.Entities.Account> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RentsService(RentingDbContext context)
+        public RentsService(RentingDbContext context, UserManager<DAL.Entities.Account> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Rent> GetRent(Guid id, CancellationToken ct)
@@ -47,6 +53,8 @@ namespace Renting.Pages
 
         public async Task<List<Rent>> GetRents(CancellationToken ct)
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
             var rents = await _context.Rents
                 .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
                 .Include(x => x.Item).ThenInclude(x => x.Warehouse)
@@ -55,6 +63,7 @@ namespace Renting.Pages
                 .Include(x => x.Seller)
                 .Include(x => x.Account)
                 .Include(x => x.Penalties)
+                .Where(x => x.AccountId == User.)
                 .ToListAsync();
 
             return rents;

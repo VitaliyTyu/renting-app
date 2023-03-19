@@ -29,6 +29,8 @@ builder.Services
 builder.Services
     .AddTransient<IRentsService, RentsService>();
 
+builder.Services
+    .AddHttpContextAccessor();
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

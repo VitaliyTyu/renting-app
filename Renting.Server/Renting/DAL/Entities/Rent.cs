@@ -10,7 +10,7 @@ namespace Renting.DAL.Entities
         public DateTime ExpectedEndDate { get; set; }
         public DateTime? ActualEndDate { get; set; }
 
-        public int? AccountId { get; set; }
+        public string? AccountId { get; set; }
         public Account? Account { get; set; }
 
         public int? SellerId { get; set; }

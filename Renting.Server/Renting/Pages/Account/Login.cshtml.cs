@@ -37,19 +37,16 @@ namespace Renting.Pages.Auth
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
-
-            // Получаем пользователя из базы данных по Email
             var user = await _dbContext.Accounts.FirstOrDefaultAsync(u => u.Email == Email);
 
             if (user != null)
             {
-                // Проверяем пароль пользователя
                 var result = await _signInManager.CheckPasswordSignInAsync(user, Password, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToPage("/Index");
                 }
             }
 

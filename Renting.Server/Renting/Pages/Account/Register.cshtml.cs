@@ -41,8 +41,6 @@ namespace Renting.Pages.Auth
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
-
             if (ModelState.IsValid)
             {
                 var user = new Renting.DAL.Entities.Account { Email = Email, UserName = Email };
@@ -53,7 +51,7 @@ namespace Renting.Pages.Auth
                     _logger.LogInformation("User created a new account with password.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    return RedirectToPage("/Index");
                 }
                 foreach (var error in result.Errors)
                 {
