@@ -18,12 +18,10 @@ namespace Renting.DAL.Entities
             var hashedPassword = passwordHasher.HashPassword(this, password);
 
             base.Email = email;
+            base.UserName = email;
             base.PasswordHash = hashedPassword;
         }
-        //public int Id { get; set; }
         public string? Inn { get; set; }
-        //public string EmailAddress { get; set; }
-        //public string Password { get; set; }
         public List<Rent> Rents { get; set; } = new List<Rent>();
     }
 }

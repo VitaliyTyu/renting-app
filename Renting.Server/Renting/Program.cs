@@ -74,7 +74,7 @@ using (var scope = app.Services.CreateScope())
     var serviceProvider = scope.ServiceProvider;
     var db = serviceProvider.GetRequiredService<RentingDbContext>();
 
-    //await db.Database.EnsureDeletedAsync();
+    await db.Database.EnsureDeletedAsync();
     await db.Database.EnsureCreatedAsync();
 
     await RentingDbContextSeed.InitializeDb(db);

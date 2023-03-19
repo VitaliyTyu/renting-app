@@ -120,12 +120,7 @@ namespace Renting.DAL
                 ShoeSizeRu = 42 
             };
 
-            var account = new Account()
-            {
-                //EmailAddress = "account1@yandex.ru",
-                //Password = "account1",
-                Inn = "1234567890"
-            };
+            var account = new Account("test@yandex.ru", "Test123!");
 
             var seller1 = new Seller()
             {

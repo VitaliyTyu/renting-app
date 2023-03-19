@@ -39,7 +39,6 @@ namespace Renting.Pages
 
             try
             {
-                var rents = await _rentsService.GetRents(ct);
                 Rent = await _rentsService.GetRent(id.Value, ct);
             }
             catch (Exception)
@@ -68,9 +67,15 @@ namespace Renting.Pages
                     return RedirectToPage("/Account/Login");
 
                 var rent = await _db.Rents
-                    .Include(x => x.Account)
-                    .Where(x => x.AccountId == user.Id)
-                    .FirstOrDefaultAsync(x => x.Id == Rent.Id);
+                .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
+                .Include(x => x.Item).ThenInclude(x => x.Warehouse)
+                .Include(x => x.Item).ThenInclude(x => x.Category)
+                .Include(x => x.Customer).ThenInclude(x => x.Discounts)
+                .Include(x => x.Seller)
+                .Include(x => x.Account)
+                .Include(x => x.Penalties)
+                .Where(x => x.AccountId == user.Id)
+                .FirstOrDefaultAsync(x => x.Id == Rent.Id);
 
                 if (rent == null)
                     return NotFound();
@@ -80,7 +85,6 @@ namespace Renting.Pages
                 rent.ActualEndDate = Rent.ActualEndDate;
                 rent.CustomerId = Rent.CustomerId;
                 rent.ItemId = Rent.ItemId;
-                rent.AccountId = Rent.AccountId;
 
                 await _db.SaveChangesAsync();
 
