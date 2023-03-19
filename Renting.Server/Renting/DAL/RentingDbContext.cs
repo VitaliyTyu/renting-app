@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Renting.DAL.Entities;
 
 namespace Renting.DAL
 {
-    public class RentingDbContext : DbContext
+    //public class RentingDbContext : DbContext
+    public class RentingDbContext : IdentityDbContext<Account>
     {
         public RentingDbContext(DbContextOptions<RentingDbContext> options) : base(options) { }
         public DbSet<Category> Categories => Set<Category>();

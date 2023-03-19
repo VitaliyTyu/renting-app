@@ -122,8 +122,8 @@ namespace Renting.DAL
 
             var account = new Account()
             {
-                EmailAddress = "account1@yandex.ru",
-                Password = "account1",
+                //EmailAddress = "account1@yandex.ru",
+                //Password = "account1",
                 Inn = "1234567890"
             };
 

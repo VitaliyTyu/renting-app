@@ -1,7 +1,9 @@
-﻿namespace Renting.DAL.Entities
+﻿using System;
+
+namespace Renting.DAL.Entities
 {
     public class DbItem
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

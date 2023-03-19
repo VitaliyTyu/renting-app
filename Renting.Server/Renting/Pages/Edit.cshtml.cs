@@ -5,9 +5,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Threading;
+using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Renting.Pages
 {
+    [Authorize]
     public class EditModel : RentsPageModel
     {
         private RentingDbContext _db;
@@ -22,7 +25,7 @@ namespace Renting.Pages
         [BindProperty]
         public Rent Rent { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id, CancellationToken ct)
+        public async Task<IActionResult> OnGetAsync(Guid? id, CancellationToken ct)
         {
             if (id == null)
                 return NotFound();

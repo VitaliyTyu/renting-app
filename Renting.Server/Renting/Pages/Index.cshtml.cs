@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Renting.DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
+using System;
 
 namespace Renting.Pages
 {
-    public class IndexModel : PageModel
+    [Authorize]
+    public class IndexModel : RentsPageModel
     {
         private readonly IRentsService _rentsService;
 
@@ -24,7 +27,7 @@ namespace Renting.Pages
             Rents = await _rentsService.GetRents(ct);
         }
 
-        public async Task<IActionResult> OnPostDelete(int? id, CancellationToken ct)
+        public async Task<IActionResult> OnPostDelete(Guid? id, CancellationToken ct)
         {
             var res = await _rentsService.DeleteRent(id, ct);
 

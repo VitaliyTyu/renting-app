@@ -16,8 +16,8 @@ namespace Renting.Pages
 {
     public interface IRentsService
     {
-        Task<bool> DeleteRent(int? id, CancellationToken ct);
-        Task<Rent> GetRent(int id, CancellationToken ct);
+        Task<bool> DeleteRent(Guid? id, CancellationToken ct);
+        Task<Rent> GetRent(Guid id, CancellationToken ct);
         Task<List<Rent>> GetRents(CancellationToken ct);
     }
 
@@ -30,7 +30,7 @@ namespace Renting.Pages
             _context = context;
         }
 
-        public async Task<Rent> GetRent(int id, CancellationToken ct)
+        public async Task<Rent> GetRent(Guid id, CancellationToken ct)
         {
             var rent = await _context.Rents
                 .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
@@ -60,7 +60,7 @@ namespace Renting.Pages
             return rents;
         }
 
-        public async Task<bool> DeleteRent(int? id, CancellationToken ct)
+        public async Task<bool> DeleteRent(Guid? id, CancellationToken ct)
         {
             if (id == null)
                 return false;
@@ -85,14 +85,14 @@ namespace Renting.Pages
             return true;
         }
 
-        private async Task ValidateUser(int rentId, int accountId, CancellationToken ct)
+        private async Task ValidateUser(Guid rentId, Guid accountId, CancellationToken ct)
         {
             var id = await _context.Rents
                 .Where(x => x.Id == rentId)
                 .Select(x => x.Account.Id)
                 .FirstOrDefaultAsync(ct);
 
-            if (id != accountId)
+            if (id != accountId.ToString())
                 throw new ArgumentException("Forbidden");
         }
     }
