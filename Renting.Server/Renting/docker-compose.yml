@@ -1,35 +1,3 @@
-#version: "3.9"
-#networks:
-#  renting-dev:
-#    driver: bridge
-#services:
-#  app: 
-#    container_name: renting-app
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - "80:80"
-#    networks:
-#      - renting-dev
-#    depends_on:
-#      - postgres_db
-#  postgres_db:
-#    container_name: postgres
-#    image: postgres:latest
-#    environment:
-#      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: root
-#      POSTGRES_DB: renting
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      - renting-dev
-#    volumes:
-#      - postgres-data:/var/lib/postgresql/data
-#volumes:
-#  postgres-data:
-
 version: "3.9"
 networks:
   renting-dev:
@@ -52,7 +20,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: renting
+      POSTGRES_DB: Renting
     ports:
       - "5432:5432"
     networks:
