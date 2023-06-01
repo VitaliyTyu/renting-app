@@ -54,19 +54,12 @@ builder.Services.AddIdentity<Account, IdentityRole>(options =>
 
 var app = builder.Build();
 
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapRazorPages();
-//});
-
-app.MapRazorPages();
-app.UseHttpsRedirection();
-
+app.UseStaticFiles(); // использование статичских файлов
+app.UseRouting(); // использование сопоставления страниц и url
+app.UseAuthentication(); // исспользование аутентификации
+app.UseAuthorization(); // исспользование авторизации
+app.MapRazorPages(); // использование страниц Razor
+app.UseHttpsRedirection(); // использование перенаправления между страницам
 
 
 using (var scope = app.Services.CreateScope())

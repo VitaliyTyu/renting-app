@@ -4,7 +4,6 @@ using Renting.DAL.Entities;
 
 namespace Renting.DAL
 {
-    //public class RentingDbContext : DbContext
     public class RentingDbContext : IdentityDbContext<Account>
     {
         public RentingDbContext(DbContextOptions<RentingDbContext> options) : base(options) { }
@@ -21,3 +20,4 @@ namespace Renting.DAL
         public DbSet<Warehouse> Warehouses => Set<Warehouse>();
     }
 }
+

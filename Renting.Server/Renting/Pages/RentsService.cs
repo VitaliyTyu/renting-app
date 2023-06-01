@@ -59,10 +59,10 @@ namespace Renting.Pages
 
         public async Task<List<Rent>> GetRents(CancellationToken ct)
         {
-            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User); // получение пользовател€
 
             if (user == null)
-                throw new ArgumentException("ƒоступ закрыт");
+                throw new ArgumentException("ƒоступ закрыт"); // проверка, что пользователь зарегестрирован
 
             var rents = await _context.Rents
                 .Include(x => x.Item).ThenInclude(x => x.CountryOfOrigin)
@@ -73,9 +73,10 @@ namespace Renting.Pages
                 .Include(x => x.Account)
                 .Include(x => x.Penalties)
                 .Where(x => x.AccountId == user.Id)
-                .ToListAsync();
+                .ToListAsync(); // ѕолучение всех договоров об аренде пользовател€
+                                // и сли€ние всех св€занных таблиц в одну
 
-            return rents;
+            return rents; // передача результата интерфейсу
         }
 
         public async Task<bool> DeleteRent(int? id, CancellationToken ct)
@@ -105,16 +106,5 @@ namespace Renting.Pages
 
             return true;
         }
-
-        //private async Task ValidateUser(Guid rentId, Guid accountId, CancellationToken ct)
-        //{
-        //    var id = await _context.Rents
-        //        .Where(x => x.Id == rentId)
-        //        .Select(x => x.Account.Id)
-        //        .FirstOrDefaultAsync(ct);
-
-        //    if (id != accountId.ToString())
-        //        throw new ArgumentException("Forbidden");
-        //}
     }
 }

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Renting.DAL.Entities.Account">
+    <Position X="6.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DAL\Entities\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Category">
+    <Position X="6.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgCAAAAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>DAL\Entities\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.CountryOfOrigin">
+    <Position X="8.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAIAAAQAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>DAL\Entities\CountryOfOrigin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Customer">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAABAAAAIAAAEAAAAQABCAAAAAgAgAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.DbItem">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\DbItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Discount">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAIIBAAAAAgAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\Discount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Item">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAEAoBAAAQAAERAAAAACAAACAgAAAAACAA=</HashCode>
+      <FileName>DAL\Entities\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Penalty">
+    <Position X="4.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQEACAAAAUAAAAgAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\Penalty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.PenaltyType">
+    <Position X="11.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAgAAAAAAIAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\PenaltyType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Rent">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAFAAAAAAAAAAAAAggAAAAAEAAAAARAAAAAAgEgACEA=</HashCode>
+      <FileName>DAL\Entities\Rent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Seller">
+    <Position X="8.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAIAAAAAAAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\Seller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.Entities.Warehouse">
+    <Position X="4.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\Warehouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.DAL.RentingDbContext">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAFAAAAAAAAECAAAAAAAAAQCAAAAEASAAgAAAAAQAAA=</HashCode>
+      <FileName>DAL\RentingDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.Auth.LoginModel">
+    <Position X="18.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAACAAAAAAAABAAAAAIAAAAAACAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Account\Login.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.Auth.RegisterModel">
+    <Position X="16.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAABAAAAAIAAAAAACAAIEAAAAIAA=</HashCode>
+      <FileName>Pages\Account\Register.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.Account.LogoutModel">
+    <Position X="20.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Account\Logout.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.CreateModel">
+    <Position X="18.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAAABAAAAAAAAAAAAAAACAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Pages\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.EditModel">
+    <Position X="20.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAAABAAAAAgAAAAAAAAACAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.IndexModel">
+    <Position X="16.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAEAAAgAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.RentsPageModel">
+    <Position X="15" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABQAAAAgAAAAAAQAAAIAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Pages\RentsPageModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renting.Pages.RentsService" BaseTypeListCollapsed="true">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAJAAAABAABAQAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Pages\RentsService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Renting.Pages.IRentsService" Collapsed="true">
+    <Position X="24.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Pages\RentsService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Renting.DAL.Entities.HarmLevel">
+    <Position X="11.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAgAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>DAL\Entities\PenaltyType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -20,10 +20,12 @@ namespace Renting.Pages
             _rentsService = rentsService;
         }
 
-        public List<Rent> Rents { get; set; }
+        // список договоров об аренде, которые используются на странице
+        public List<Rent> Rents { get; set; } 
 
         public async Task<IActionResult> OnGetAsync(CancellationToken ct)
         {
+            // получение договоров об аренде
             try
             {
                 var rents = await _rentsService.GetRents(ct);
@@ -38,6 +40,7 @@ namespace Renting.Pages
 
         public async Task<IActionResult> OnPostDelete(int? id, CancellationToken ct)
         {
+            // удаление договора об аренде
             var res = await _rentsService.DeleteRent(id, ct);
 
             if (res)
@@ -47,3 +50,4 @@ namespace Renting.Pages
         }
     }
 }
+
