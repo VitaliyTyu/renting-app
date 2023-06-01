@@ -34,12 +34,12 @@ namespace Renting.DAL
 
 
 
-            var item1 = new Item() 
-            { 
-                Name = "Лыжи", 
-                RentalPrice = 100.00m, 
+            var item1 = new Item()
+            {
+                Name = "Лыжи",
+                RentalPrice = 100.00m,
                 MarketPrice = 1000.00m,
-                Length = 150, 
+                Length = 150,
                 Width = 50,
                 BreakdownFee = 1000,
                 CountryOfOrigin = сountryOfOrigin1,
@@ -47,10 +47,10 @@ namespace Renting.DAL
                 Category = category1
             };
 
-            var item2 = new Item() 
-            { 
-                Name = "Санки", 
-                RentalPrice = 75.00m, 
+            var item2 = new Item()
+            {
+                Name = "Санки",
+                RentalPrice = 75.00m,
                 MarketPrice = 750,
                 Length = 100,
                 BreakdownFee = 100,
@@ -59,8 +59,8 @@ namespace Renting.DAL
                 Category = category3,
             };
 
-            var item3 = new Item() 
-            { 
+            var item3 = new Item()
+            {
                 Name = "Карабин",
                 RentalPrice = 55.00m,
                 MarketPrice = 550,
@@ -71,8 +71,8 @@ namespace Renting.DAL
                 Category = category3,
             };
 
-            var item4 = new Item() 
-            { 
+            var item4 = new Item()
+            {
                 Name = "Трос",
                 RentalPrice = 65.00m,
                 MarketPrice = 650,
@@ -85,39 +85,39 @@ namespace Renting.DAL
 
 
 
-            var discount1 = new Discount() { Value = 15, ActualFrom = new DateTime(2023, 03, 12), ActualTo = new DateTime(2023, 12, 30)};
+            var discount1 = new Discount() { Value = 15, ActualFrom = new DateTime(2023, 03, 12), ActualTo = new DateTime(2023, 12, 30) };
             var discount2 = new Discount() { Value = 30, ActualFrom = new DateTime(2023, 03, 12), ActualTo = new DateTime(2023, 12, 30) };
             var discount3 = new Discount() { Value = 50, ActualFrom = new DateTime(2023, 03, 12), ActualTo = new DateTime(2023, 12, 30) };
 
 
 
-            var customer1 = new Customer() 
-            { 
+            var customer1 = new Customer()
+            {
                 Name = "Иван",
                 Surname = "Петров",
-                Age = 20, 
-                Height = 180, 
+                Age = 20,
+                Height = 180,
                 ShoeSizeRu = 45,
-                Discounts = new List<Discount>() { discount1, discount2}
+                Discounts = new List<Discount>() { discount1, discount2 }
             };
 
-            var customer2 = new Customer() 
-            { 
+            var customer2 = new Customer()
+            {
                 Name = "Мария",
                 Surname = "Петрова",
-                Age = 25, 
-                Height = 170, 
+                Age = 25,
+                Height = 170,
                 ShoeSizeRu = 40,
                 Discounts = new List<Discount>() { discount3 }
             };
 
-            var customer3 = new Customer() 
-            { 
+            var customer3 = new Customer()
+            {
                 Name = "Петр",
                 Surname = "Иванов",
-                Age = 30, 
-                Height = 175, 
-                ShoeSizeRu = 42 
+                Age = 30,
+                Height = 175,
+                ShoeSizeRu = 42
             };
 
             var account = new Account("test@yandex.ru", "Test123!");
@@ -131,15 +131,15 @@ namespace Renting.DAL
             var seller2 = new Seller()
             {
                 Name = "Джейн",
-                Surname = "Хоу"
+                Surname = "Доу"
             };
 
-            var rent1 = new Rent() 
+            var rent1 = new Rent()
             {
                 Account = account,
-                StartDate = new DateTime(2023, 03, 12), 
-                ExpectedEndDate = new DateTime(2023, 03, 20), 
-                Customer = customer1, 
+                StartDate = new DateTime(2023, 03, 12),
+                ExpectedEndDate = new DateTime(2023, 03, 20),
+                Customer = customer1,
                 Item = item1,
                 Seller = seller1,
             };
