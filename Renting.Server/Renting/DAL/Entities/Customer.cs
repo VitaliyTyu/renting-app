@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
+using Renting.DAL.Interfaces;
+
 namespace Renting.DAL.Entities
 {
-    public class Customer : DbItem
+    public class Customer : DbItem, NamedEntity
     {
         public string Name { get; set; }
         public string? Surname { get; set; }

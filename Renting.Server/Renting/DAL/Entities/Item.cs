@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
+using Renting.DAL.Interfaces;
+
 namespace Renting.DAL.Entities
 {
-    public class Item : DbItem
+    public class Item : DbItem, NamedEntity
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         public decimal RentalPrice { get; set; }
         public decimal MarketPrice { get; set; }
         public decimal BreakdownFee { get; set; }

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 
+using Renting.DAL.Interfaces;
+
 namespace Renting.DAL.Entities
 {
-    public class CountryOfOrigin : DbItem
+    public class CountryOfOrigin : DbItem, NamedEntity
     {
         public string Name { get; set; }
         public string? Location { get; set; }

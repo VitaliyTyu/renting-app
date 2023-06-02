@@ -70,7 +70,7 @@ using (var scope = app.Services.CreateScope())
     await db.Database.EnsureDeletedAsync();
     await db.Database.EnsureCreatedAsync();
 
-    //await RentingDbContextSeed.InitializeDb(db);
+    await RentingDbContextSeed.InitializeDb(db);
 }
 
 app.Run();

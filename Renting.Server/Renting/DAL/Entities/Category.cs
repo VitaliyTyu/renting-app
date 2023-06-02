@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 
+using Renting.DAL.Interfaces;
+
 namespace Renting.DAL.Entities
 {
-    public class Category : DbItem
+    public class Category : DbItem, NamedEntity
     {
         public string Name { get; set; }
         public string? Description { get; set; }
