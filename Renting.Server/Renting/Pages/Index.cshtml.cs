@@ -85,7 +85,6 @@ namespace Renting.Pages
                     worksheet.Cells[1, i + 1].Value = filteredProperties[i].Name;
                 }
 
-                // Write data rows
                 for (int row = 0; row < data.Count; row++)
                 {
                     for (int col = 0; col < filteredProperties.Count; col++)
@@ -93,16 +92,14 @@ namespace Renting.Pages
                         var propertyValue = filteredProperties[col].GetValue(data[row]);
 
                         
-                        if (propertyValue is DateTime dateTimeValue) // Check if the property value is a DateTime
+                        if (propertyValue is DateTime dateTimeValue) 
                         {
-                            // Format the DateTime value as desired
                             var formattedValue = dateTimeValue.ToString("yyyy-MM-dd HH:mm:ss");
 
                             worksheet.Cells[row + 2, col + 1].Value = formattedValue;
                         }
-                        else if (propertyValue is NamedEntity referencedObject) // Check if the property is a referenced object
+                        else if (propertyValue is NamedEntity referencedObject) 
                         {
-                            // Get the desired property of the referenced object
                             var referencedProperty = typeof(NamedEntity).GetProperty("Name");
                             var referencedPropertyValue = referencedProperty?.GetValue(referencedObject);
 
