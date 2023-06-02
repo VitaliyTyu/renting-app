@@ -14,7 +14,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 
-namespace Renting.Pages
+namespace Renting.Services
 {
     public interface IRentsService
     {
@@ -26,10 +26,10 @@ namespace Renting.Pages
     public class RentsService : IRentsService
     {
         private readonly RentingDbContext _context;
-        private readonly UserManager<DAL.Entities.Account> _userManager;
+        private readonly UserManager<Account> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RentsService(RentingDbContext context, UserManager<DAL.Entities.Account> userManager, IHttpContextAccessor httpContextAccessor)
+        public RentsService(RentingDbContext context, UserManager<Account> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _userManager = userManager;

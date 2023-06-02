@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Renting.DAL.Interfaces;
 using System.Linq;
+using Renting.Services;
 
 namespace Renting.Pages
 {
