@@ -15,7 +15,10 @@ namespace Renting.DAL.Entities
         public double? ShoeSizeRu { get; set; }
         public double? ClothingSizeRu { get; set; }
 
-        public List<Rent> Rent { get; set; } = new List<Rent>();
+        public string? AccountId { get; set; }
+        public Account? Account { get; set; }
+
+        public List<Rent> Rents { get; set; } = new List<Rent>();
 
         public List<Discount> Discounts { get; set; } = new List<Discount>();
 

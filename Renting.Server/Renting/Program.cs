@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Renting.DAL.Entities;
 using Renting.Services;
+using Renting.Pages.Customers;
+using Renting.Pages.Sellers;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -27,7 +29,9 @@ builder.Services
     .AddRazorPages();
 
 builder.Services
-    .AddTransient<IRentsService, RentsService>();
+    .AddTransient<IRentsService, RentsService>()
+    .AddTransient<SellerService>()
+    .AddTransient<CustomerService>();
 
 builder.Services
     .AddHttpContextAccessor();
@@ -70,7 +74,7 @@ using (var scope = app.Services.CreateScope())
     await db.Database.EnsureDeletedAsync();
     await db.Database.EnsureCreatedAsync();
 
-    //await RentingDbContextSeed.InitializeDb(db);
+    await RentingDbContextSeed.InitializeDb(db);
 }
 
 app.Run();
