@@ -11,10 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Renting.DAL.Entities;
-using Renting.Services;
 using Renting.Pages.Customers;
 using Renting.Pages.Sellers;
 using Renting.Pages.Items;
+using Renting.Pages.Categories;
+using Renting.Pages.Warehouses;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -30,9 +31,12 @@ builder.Services
     .AddRazorPages();
 
 builder.Services
-    .AddTransient<IRentsService, RentsService>()
+    .AddTransient<Renting.Services.IRentsService, Renting.Services.RentsService>()
     .AddTransient<SellerService>()
     .AddTransient<ItemsService>()
+    .AddTransient<WarehousesService>()
+    .AddTransient<CategoriesService>()
+    .AddTransient<Renting.Pages.CountriesOfOrigin.CountriesOfOriginService>()
     .AddTransient<CustomerService>();
 
 builder.Services

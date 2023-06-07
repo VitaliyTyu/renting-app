@@ -1,0 +1,64 @@
+﻿@page
+@model Renting.Pages.Categories.IndexModel
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Категории</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Create" class="btn btn-info form-control text-white">Добавить страну производителя</a>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Categories.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label>Имя</label>
+                        </th>
+                        <th>
+                            <label>Описание</label>
+                        </th>
+                        <th>
+                            <label>Заметка</label>
+                        </th>
+
+                        <th>
+                        </th>
+                    </tr>
+                    @foreach (var country in Model.Categories)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => country.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => country.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => country.Note)
+                            </td>
+
+
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@country.Id" class="btn btn-danger btn-sm" style="width: 150px">Удалить</button>
+                                <a asp-page="Edit" asp-route-id="@country.Id" class="btn btn-success btn-sm text-white" style="width: 150px">Редактировать</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>Нет категорий</p>
+            }
+        </form>
+    </div>
+</div>
+
+
+
+

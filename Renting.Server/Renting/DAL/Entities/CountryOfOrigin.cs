@@ -6,6 +6,8 @@ namespace Renting.DAL.Entities
 {
     public class CountryOfOrigin : DbItem, NamedEntity
     {
+        public string? AccountId { get; set; }
+        public Account? Account { get; set; }
         public string Name { get; set; }
         public string? Location { get; set; }
         public decimal? ApprovalRating { get; set; }

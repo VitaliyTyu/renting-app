@@ -18,20 +18,20 @@ namespace Renting.DAL
 
             var account = new Account("test@yandex.ru", "Test123!");
 
-            var category1 = new Category() { Name = "Лыжи", Note = "Лыжи", Description = "Лыжи" };
-            var category2 = new Category() { Name = "Одежда", Note = "Одежда", Description = "Одежда" };
-            var category3 = new Category() { Name = "Другое", Note = "Другое", Description = "Другое" };
+            var category1 = new Category() { Account = account, Name = "Лыжи", Note = "Лыжи", Description = "Лыжи" };
+            var category2 = new Category() { Account = account, Name = "Одежда", Note = "Одежда", Description = "Одежда" };
+            var category3 = new Category() { Account = account, Name = "Другое", Note = "Другое", Description = "Другое" };
 
 
 
-            var сountryOfOrigin1 = new CountryOfOrigin() { Name = "Китай", ApprovalRating = 8 };
-            var сountryOfOrigin2 = new CountryOfOrigin() { Name = "Россия", ApprovalRating = 7 };
-            var сountryOfOrigin3 = new CountryOfOrigin() { Name = "Норвегия", ApprovalRating = 6 };
+            var сountryOfOrigin1 = new CountryOfOrigin() { Account = account, Name = "Китай", ApprovalRating = 8 };
+            var сountryOfOrigin2 = new CountryOfOrigin() { Account = account, Name = "Россия", ApprovalRating = 7 };
+            var сountryOfOrigin3 = new CountryOfOrigin() { Account = account, Name = "Норвегия", ApprovalRating = 6 };
 
 
 
-            var warehouse1 = new Warehouse() { Name = "Первый склад", Address = "ул Пушкина" };
-            var warehouse2 = new Warehouse() { Name = "Второй склад", Address = "ул Пермская" };
+            var warehouse1 = new Warehouse() { Account = account, Name = "Первый склад", Address = "ул Пушкина" };
+            var warehouse2 = new Warehouse() { Account = account, Name = "Второй склад", Address = "ул Пермская" };
 
 
 
