@@ -1,74 +1,74 @@
 ﻿@page
-@model Renting.Pages.Customers.IndexModel
+@model Renting.Pages.Items.IndexModel
 
 <br />
 <div class="container row p-0 m-0">
     <div class="col-9">
-        <h2 class="text-info">Покупатели</h2>
+        <h2 class="text-info">Предметы</h2>
     </div>
     <div class="col-3">
-        <a asp-page="Create" class="btn btn-info form-control text-white">Добавить покупателя</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white">Добавить предмет</a>
     </div>
 
     <div class="col-12 border p-3 mt-3">
         <form method="post">
-            @if (Model.Customers.Count() > 0)
+            @if (Model.Items.Count() > 0)
             {
                 <table class="table table-striped border">
                     <tr class="table-secondary">
                         <th>
-                            <label>Имя</label>
+                            <label>Название</label>
                         </th>
                         <th>
-                            <label>Фамилия</label>
+                            <label>Цена аренды</label>
                         </th>
                         <th>
-                            <label>Возраст</label>
+                            <label>Рыночная стоимость</label>
                         </th>
                         <th>
-                            <label>Рост</label>
+                            <label>Цена поломки</label>
                         </th>
                         <th>
-                            <label>Вес</label>
+                            <label>Размер RU</label>
                         </th>
                         <th>
-                            <label>Размер обуви</label>
+                            <label>Длина</label>
                         </th>
                         <th>
-                            <label>Размер одежды</label>
+                            <label>Ширина</label>
                         </th>
 
                         <th>
                         </th>
                     </tr>
-                    @foreach (var customer in Model.Customers)
+                    @foreach (var item in Model.Items)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(m => customer.Name)
+                                @Html.DisplayFor(m => item.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => customer.Surname)
+                                @Html.DisplayFor(m => item.RentalPrice)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => customer.Age)
+                                @Html.DisplayFor(m => item.MarketPrice)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => customer.Height)  
+                                @Html.DisplayFor(m => item.BreakdownFee)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => customer.Weight)
+                                @Html.DisplayFor(m => item.SizeRu)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => customer.ShoeSizeRu)
+                                @Html.DisplayFor(m => item.Length)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => customer.ClothingSizeRu)
+                                @Html.DisplayFor(m => item.Width)
                             </td>
 
                             <td>
-                                <button asp-page-handler="Delete" asp-route-id="@customer.Id" class="btn btn-danger btn-sm" style="width: 150px">Удалить</button>
-                                <a asp-page="Edit" asp-route-id="@customer.Id" class="btn btn-success btn-sm text-white" style="width: 150px">Редактировать</a>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" style="width: 150px">Удалить</button>
+                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white" style="width: 150px">Редактировать</a>
                             </td>
                         </tr>
                     }

@@ -14,6 +14,7 @@ using Renting.DAL.Entities;
 using Renting.Services;
 using Renting.Pages.Customers;
 using Renting.Pages.Sellers;
+using Renting.Pages.Items;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -31,6 +32,7 @@ builder.Services
 builder.Services
     .AddTransient<IRentsService, RentsService>()
     .AddTransient<SellerService>()
+    .AddTransient<ItemsService>()
     .AddTransient<CustomerService>();
 
 builder.Services
@@ -74,7 +76,7 @@ using (var scope = app.Services.CreateScope())
     await db.Database.EnsureDeletedAsync();
     await db.Database.EnsureCreatedAsync();
 
-    //await RentingDbContextSeed.InitializeDb(db);
+    await RentingDbContextSeed.InitializeDb(db);
 }
 
 app.Run();

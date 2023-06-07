@@ -1,0 +1,103 @@
+﻿@page
+@model Renting.Pages.Items.EditModel
+
+<br />
+<h2 class="text-info">Редактирование предмета</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <input type="hidden" asp-for="Item.Id" />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Item.Name">Имя</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Item.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Item.Name" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Item.RentalPrice">Цена аренды</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Item.RentalPrice" class="form-control" />
+            </div>
+            <span asp-validation-for="Item.RentalPrice" class="text-danger"></span>
+            <br />
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Item.MarketPrice">Рыночная стоимость</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Item.MarketPrice" class="form-control" />
+            </div>
+            <span asp-validation-for="Item.MarketPrice" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Item.BreakdownFee">Цена поломки</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Item.BreakdownFee" class="form-control" />
+            </div>
+        <span asp-validation-for="Item.BreakdownFee" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Item.SizeRu">размер RU</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Item.SizeRu" class="form-control" />
+            </div>
+            <span asp-validation-for="Item.SizeRu" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Item.Length">Длина</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Item.Length" class="form-control" />
+            </div>
+            <span asp-validation-for="Item.Length" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Item.Width">Ширина</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Item.Width" class="form-control" />
+            </div>
+            <span asp-validation-for="Item.Width" class="text-danger"></span>
+            <br />
+        </div>
+
+        <div class="form-group row" style="margin-top: 10px">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Изменить" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Назад</a>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

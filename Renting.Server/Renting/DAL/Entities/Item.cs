@@ -7,6 +7,9 @@ namespace Renting.DAL.Entities
 {
     public class Item : DbItem, NamedEntity
     {
+
+        public string? AccountId { get; set; }
+        public Account? Account { get; set; }
         public string Name { get; set; } = "";
         public decimal RentalPrice { get; set; }
         public decimal MarketPrice { get; set; }
